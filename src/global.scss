@@ -1,0 +1,16 @@
+$blue: #61d9ff;
+$red: #ff6161;
+$white: #f1f1f1;
+$dark: #131313;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: $dark;
+    color: $white;
+    padding: 2rem;
+    font-family: 'Lato';
+}

@@ -1,0 +1,57 @@
+$blue: #61d9ff;
+$red: #ff6161;
+$gray: #f1f1f120;
+$white: #f1f1f1;
+$dark: #131313;
+
+div {
+    input {
+        display: inline;
+        background: $gray;
+        border: none;
+        height: 120px;
+        width: 90%;
+        font-size: 1rem;
+        color: $white;
+    }
+    
+    button {
+        display: inline;
+        background-color: $blue;
+        border: none;
+    
+        height: 120px;
+        width: 10%;
+
+        transform: translate(0%, 20%);    
+    }
+}
+
+ul {
+    margin-top: 25px;
+    height: 80px;
+
+    li {
+        list-style: none;
+        height: 60px;
+        transform: translate(0%, 50%);
+
+        input {
+            background: $white;
+            width: 30px;
+            height: 30px;
+
+            margin-right: 15px;
+            transform: translate(0%, 50%);
+        }
+    
+        button {
+            background: none;
+            border: none;
+            float: right;
+            margin-left: 20px;
+
+            transform: translate(0%, -25%);
+        }
+    }
+}

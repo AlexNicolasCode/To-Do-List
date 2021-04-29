@@ -4,17 +4,19 @@ $gray: #f1f1f120;
 $white: #f1f1f1;
 $dark: #131313;
 
-div {
+form {
     input {
         display: inline;
         background: $gray;
         border: none;
-        height: 120px;
-        width: 90%;
-        font-size: 1rem;
         color: $white;
+
+        height: 120px;
+        width: 87.5%;
+        font-size: 1rem;
+        padding-left: 2.5%;
     }
-    
+
     button {
         display: inline;
         background-color: $blue;
@@ -29,11 +31,12 @@ div {
 
 ul {
     margin-top: 25px;
-    height: 80px;
 
     li {
         list-style: none;
         height: 60px;
+        margin-top: 20px;
+
         transform: translate(0%, 50%);
 
         input {
@@ -49,9 +52,13 @@ ul {
             background: none;
             border: none;
             float: right;
-            margin-left: 20px;
+            margin-left: 100px;
 
-            transform: translate(0%, -25%);
+            transform: translate(0%, 50%);
         }
     }
+}
+
+.done {
+    text-decoration: line-through;
 }

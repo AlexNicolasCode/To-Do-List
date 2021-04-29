@@ -1,6 +1,7 @@
 $blue: #61d9ff;
 $red: #ff6161;
 $white: #f1f1f1;
+$gray: #c4c4c4;
 $dark: #131313;
 
 * {
@@ -13,4 +14,9 @@ body {
     color: $white;
     padding: 2rem;
     font-family: 'Lato';
+}
+
+.done {
+    text-decoration: line-through;
+    opacity: 30%;
 }

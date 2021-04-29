@@ -1,77 +1,54 @@
-import ReactDOM from 'react-dom'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './styles.module.scss'
 
-function Task() {
-    const [ taskName, setTaskName ] = useState('');
-    const [ checkbox, setCheckbox ] = useState(<input type="checkbox"/>);
-
-    useEffect(() => {
-    }, [checkbox])
-
-    const editTask = () => {
-    }
-
-    const deleteTask = () => {
-        setTaskName('hidden')
-    }
-
-    return (
-        <div id={taskName}>
-            <span>{checkbox}</span>
-            {taskName}
-            <button onClick={editTask}>
-                <img src="edit.svg" alt="edit taskd"/>
-            </button>
-            <button onClick={deleteTask}>
-                <img src="delete.svg" alt="delete taskd"/>
-            </button>
-        </div>
-    )
-}
-
 export function Main() {
-    const [ task, setTask ] = useState('')
-    const [ newTaskElement, setNewTaskElement ] = useState()
+    const [ task, setTask ] = useState<string>("");
+    const [ taskCheck, setTaskCheck ] = useState("");
+    const [ itens, setItens ] = useState<string[]>([])
 
     const editTask = () => {
+        
     }
 
     const deleteTask = () => {
+        // const newList = itens.filter((index) => index.id !== id);
+ 
+        // setItens(newList);
     }
 
-    
-    function addTask() {
-        const todo = document.getElementById('list');
-        const newTask = (
-                <li id={task}>
-                    <input id={task} type="checkbox"/>
-                    <span>{task}</span>
-                    <button onClick={deleteTask}>
-                        <img src="delete.svg" alt="delete taskd"/>
-                    </button>
-                    <button onClick={editTask}>
-                        <img src="edit.svg" alt="edit taskd"/>
-                    </button>
-                </li>
-        )
-
-        if (task.length > 2) {
-            ReactDOM.render(newTask, todo);
-            ReactDOM.render(newTask, todo);
-            ReactDOM.render(newTask, todo);
-        }
+    const inputChecked = () => {
+        if (taskCheck === "done") {
+            setTaskCheck("")
+        } else setTaskCheck("done")
     }
 
     return (
         <main>
-            <div id="inputTask">
-                <input id="task" type="text" placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
-                <button onClick={addTask}>
+            <form id="inputTask"         
+                onSubmit={event => {
+                event.preventDefault();
+                if (task.length > 2) {
+                    setItens([...itens, task]);
+                }
+            }}>
+                <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
+                <button type="submit">
                     <img src="add.svg" alt="add new task"/>
                 </button>
-            </div>
+            </form>
             <ul id="list">
+                {itens.map((todo, index) => (
+                    <li key={index}>
+                        <input type="checkbox" onChange={inputChecked}/>
+                        <span className={taskCheck}>{todo}</span>
+                        <button onClick={() => deleteTask()} style={{ marginRight: '50px' }}>
+                            <img src="delete.svg" alt="delete taskd"/>
+                        </button>
+                        <button onClick={editTask}>
+                            <img src="edit.svg" alt="edit taskd"/>
+                        </button>
+                    </li>
+                ))}
             </ul>
         </main>
     )

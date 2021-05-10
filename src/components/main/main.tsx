@@ -6,14 +6,23 @@ export function Main() {
     const [ taskCheck, setTaskCheck ] = useState("");
     const [ itens, setItens ] = useState<string[]>([])
 
-    const editTask = () => {
+    function editTask(item: string, index: number) {
+        setTask(item)
+        deleteTask(index)
     }
 
-    const inputChecked = () => {
+    function deleteTask(index: number) {
+        console.log(itens)
+        if (index !== -1) {
+            itens.splice(index, 1);
+        }
+        inputChecked()
+    }
+
+    function inputChecked() {
         if (taskCheck === "done") {
             setTaskCheck("")
         } else setTaskCheck("done")
-        console.log(itens)
     }
 
     return (
@@ -28,27 +37,20 @@ export function Main() {
             }}>
                 <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
                 <button type="submit">
-                    <img src="add.svg" alt="add new task"/>
+                    <img src="add.svg" alt="add new     task"/>
                 </button>
             </form>
             <ul id="list">
                 {itens.map((item, index) => (
                     <li key={index}>
-                        <input type="checkbox" onChange={() => inputChecked()}/>
-                        <span className={item}>{item}</span>
+                        <span>{item}</span>
                         <button 
-                            onClick={() => {
-                                console.log(itens)
-                                if (index !== -1) {
-                                    itens.splice(index, 1);
-                                }
-                                inputChecked()
-                            }} 
+                            onClick={() => deleteTask(index)} 
                             style={{ marginRight: '50px' }}
                         >
                             <img src="delete.svg" alt="delete taskd"/>
                         </button>
-                        <button onClick={editTask}>
+                        <button onClick={() => editTask(item, index)}>
                             <img src="edit.svg" alt="edit taskd"/>
                         </button>
                     </li>

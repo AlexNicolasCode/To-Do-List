@@ -3,26 +3,22 @@ import './styles.module.scss'
 
 export function Main() {
     const [ task, setTask ] = useState<string>("");
-    const [ taskCheck, setTaskCheck ] = useState("");
+    const [taskDeleted, setTaskDeleted] = useState<string>("")
     const [ itens, setItens ] = useState<string[]>([])
 
     function editTask(item: string, index: number) {
         setTask(item)
-        deleteTask(index)
+        if (index !== -1) {
+            itens.splice(index, 1);
+        }
     }
 
-    function deleteTask(index: number) {
+    function deleteTask(item: string, index: number) {
         console.log(itens)
         if (index !== -1) {
             itens.splice(index, 1);
         }
-        inputChecked()
-    }
-
-    function inputChecked() {
-        if (taskCheck === "done") {
-            setTaskCheck("")
-        } else setTaskCheck("done")
+        setTaskDeleted(`${item} was been deleted`)
     }
 
     return (
@@ -37,15 +33,16 @@ export function Main() {
             }}>
                 <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
                 <button type="submit">
-                    <img src="add.svg" alt="add new     task"/>
+                    <img src="add.svg" alt="add new task"/>
                 </button>
+                <p>{taskDeleted}</p>
             </form>
             <ul id="list">
                 {itens.map((item, index) => (
                     <li key={index}>
                         <span>{item}</span>
                         <button 
-                            onClick={() => deleteTask(index)} 
+                            onClick={() => deleteTask(item, index)} 
                             style={{ marginRight: '50px' }}
                         >
                             <img src="delete.svg" alt="delete taskd"/>

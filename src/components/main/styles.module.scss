@@ -30,6 +30,12 @@ form {
 
         transform: translate(0%, 15%);    
     }
+
+    p {
+        margin-top: 10px;
+        margin-left: 2.5%;
+        color: #ff6161;
+    }
 }
 
 ul {
@@ -66,8 +72,4 @@ ul {
             transform: translate(0%, 50%);
         }
     }
-}
-
-.done {
-    text-decoration: line-through;
 }

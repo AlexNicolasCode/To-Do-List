@@ -7,19 +7,13 @@ export function Main() {
     const [ itens, setItens ] = useState<string[]>([])
 
     const editTask = () => {
-        
-    }
-
-    const deleteTask = () => {
-        // const newList = itens.filter((index) => index.id !== id);
- 
-        // setItens(newList);
     }
 
     const inputChecked = () => {
         if (taskCheck === "done") {
             setTaskCheck("")
         } else setTaskCheck("done")
+        console.log(itens)
     }
 
     return (
@@ -29,6 +23,7 @@ export function Main() {
                 event.preventDefault();
                 if (task.length > 2) {
                     setItens([...itens, task]);
+                    setTask("")
                 }
             }}>
                 <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
@@ -37,11 +32,20 @@ export function Main() {
                 </button>
             </form>
             <ul id="list">
-                {itens.map((todo, index) => (
+                {itens.map((item, index) => (
                     <li key={index}>
-                        <input type="checkbox" onChange={inputChecked}/>
-                        <span className={taskCheck}>{todo}</span>
-                        <button onClick={() => deleteTask()} style={{ marginRight: '50px' }}>
+                        <input type="checkbox" onChange={() => inputChecked()}/>
+                        <span className={item}>{item}</span>
+                        <button 
+                            onClick={() => {
+                                console.log(itens)
+                                if (index !== -1) {
+                                    itens.splice(index, 1);
+                                }
+                                inputChecked()
+                            }} 
+                            style={{ marginRight: '50px' }}
+                        >
                             <img src="delete.svg" alt="delete taskd"/>
                         </button>
                         <button onClick={editTask}>

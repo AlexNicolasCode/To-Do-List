@@ -1,8 +1,9 @@
-import { useState } from 'react'
-import './styles.module.scss'
-import addIcon from '../main/icons/add.svg'
-import editIcon from '../main/icons/edit.svg'
-import deleteIcon from '../main/icons/delete.svg'
+import { useState } from 'react';
+import Image from 'next/image';
+import addIcon from './icons/add.png'
+import editIcon from './icons/edit.png'
+import deleteIcon from './icons/delete.png'
+import style from './styles.module.scss'
 
 export function Main() {
     const [ task, setTask ] = useState<string>("");
@@ -26,7 +27,7 @@ export function Main() {
 
     return (
         <main>
-            <form id="inputTask"         
+            <form className={style.form}        
                 onSubmit={event => {
                 event.preventDefault();
                 if (task.length > 2) {
@@ -36,11 +37,11 @@ export function Main() {
             }}>
                 <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
                 <button type="submit">
-                    <img src={addIcon} alt="add new task" />
+                    <Image src={addIcon} alt="add new task" />
                 </button>
                 <p>{taskDeleted}</p>
             </form>
-            <ul id="list">
+            <ul className={style.ul}>
                 {itens.map((item, index) => (
                     <li key={index}>
                         <span>{item}</span>
@@ -48,10 +49,10 @@ export function Main() {
                             onClick={() => deleteTask(item, index)} 
                             style={{ marginRight: '50px' }}
                         >
-                            <img src={deleteIcon} alt="delete taskd"/>
+                            <Image src={deleteIcon} alt="delete taskd"/>
                         </button>
                         <button onClick={() => editTask(item, index)}>
-                            <img src={editIcon} alt="edit taskd"/>
+                            <Image src={editIcon} alt="edit taskd"/>
                         </button>
                     </li>
                 ))}

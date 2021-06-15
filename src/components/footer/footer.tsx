@@ -1,8 +1,8 @@
-import './styles.module.scss'
+import styles from './styles.module.scss'
 
 export function Footer() {
     return (
-        <footer>
+        <footer className={styles.footer}>
             Developed by Alex Nicolas
             <span></span>
             <span></span>

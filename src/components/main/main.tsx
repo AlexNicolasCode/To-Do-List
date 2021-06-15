@@ -1,9 +1,12 @@
 import { useState } from 'react'
 import './styles.module.scss'
+import addIcon from '../main/icons/add.svg'
+import editIcon from '../main/icons/edit.svg'
+import deleteIcon from '../main/icons/delete.svg'
 
 export function Main() {
     const [ task, setTask ] = useState<string>("");
-    const [taskDeleted, setTaskDeleted] = useState<string>("")
+    const [ taskDeleted, setTaskDeleted ] = useState<string>("")
     const [ itens, setItens ] = useState<string[]>([])
 
     function editTask(item: string, index: number) {
@@ -33,7 +36,7 @@ export function Main() {
             }}>
                 <input id="task" type="text" value={task} placeholder="Add a new task at list" onChange={event => setTask(event.target.value)}/>
                 <button type="submit">
-                    <img src="add.svg" alt="add new task"/>
+                    <img src={addIcon} alt="add new task" />
                 </button>
                 <p>{taskDeleted}</p>
             </form>
@@ -45,10 +48,10 @@ export function Main() {
                             onClick={() => deleteTask(item, index)} 
                             style={{ marginRight: '50px' }}
                         >
-                            <img src="delete.svg" alt="delete taskd"/>
+                            <img src={deleteIcon} alt="delete taskd"/>
                         </button>
                         <button onClick={() => editTask(item, index)}>
-                            <img src="edit.svg" alt="edit taskd"/>
+                            <img src={editIcon} alt="edit taskd"/>
                         </button>
                     </li>
                 ))}

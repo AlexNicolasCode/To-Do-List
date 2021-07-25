@@ -18,7 +18,6 @@ export function Main() {
     }
 
     function deleteTask(item: string, index: number) {
-        console.log(itens)
         if (index !== -1) {
             itens.splice(index, 1);
         }
@@ -39,21 +38,26 @@ export function Main() {
                 <button type="submit">
                     <Image src={addIcon} alt="add new task" />
                 </button>
-                <p>{taskDeleted}</p>
             </form>
+
+            <p style={{textAlign: "center", marginTop: "8px", color: "#ff6161"}}>{taskDeleted}</p>
+
             <ul className={style.ul}>
                 {itens.map((item, index) => (
                     <li key={index}>
                         <span>{item}</span>
-                        <button 
-                            onClick={() => deleteTask(item, index)} 
-                            style={{ marginRight: '50px' }}
-                        >
-                            <Image src={deleteIcon} alt="delete taskd"/>
-                        </button>
-                        <button onClick={() => editTask(item, index)}>
-                            <Image src={editIcon} alt="edit taskd"/>
-                        </button>
+
+                        <div>
+                            <button 
+                                onClick={() => deleteTask(item, index)} 
+                            >
+                                <Image src={deleteIcon} alt="delete taskd"/>
+                            </button>
+
+                            <button onClick={() => editTask(item, index)}>
+                                <Image src={editIcon} alt="edit taskd"/>
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
